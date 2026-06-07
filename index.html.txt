@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffe6e6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.5rem;
+        }
+        .gif-container img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            height: 100px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+        #yesBtn {
+            background-color: #4cc9f0;
+            color: white;
+        }
+        #noBtn {
+            background-color: #ff4d6d;
+            color: white;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="gif-container">
+            <!-- Had l-GIF momkin tbedlou b ay wa7ed khor dyal Milk & Mocha bear -->
+            <img id="imageDisplay" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Nnd3M3bHpxbXN4N3Z4amN4N254amN4N254amN4N254amN4biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c7stH3995jS0C2wAms/giphy.gif" alt="Cute bear">
+        </div>
+        <h1 id="question">Be My Valentine? 🥺❤️</h1>
+        
+        <div class="buttons">
+            <button id="yesBtn">Yes! 💖</button>
+            <button id="noBtn">No 💔</button>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const question = document.getElementById('question');
+        const imageDisplay = document.getElementById('imageDisplay');
+
+        let yesSize = 1.2; 
+        let noClicks = 0;
+
+        const phrases = [
+            "No 💔",
+            "Are you sure? 🥺",
+            "Really sure?? 😭",
+            "Think again! 🌸",
+            "Last chance! 💖",
+            "Surely not? 👀",
+            "Give it a chance! ✨",
+            "Don't do this to me... ☠️"
+        ];
+
+        noBtn.addEventListener('click', () => {
+            noClicks++;
+            
+            // 1. Mkber l-bouton dyal YES
+            yesSize += 0.4;
+            yesBtn.style.transform = `scale(${yesSize})`;
+            
+            // 2. Beddel l-katba f bouton NO
+            let phraseIndex = noClicks % phrases.length;
+            noBtn.innerText = phrases[phraseIndex];
+            
+            // 3. Hreb l-bouton dyal NO l blasa khora random
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            // Chno gha yw9a3 mlli tberk 3la YES
+            question.innerText = "YAYYY! See you on Valentine's Day! 🥰🎉❤️";
+            imageDisplay.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHZyamtndWNtNzN5bWZ4amN4N254amN4N254amN4N254amN4biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26vUxS39F80fE2mHe/giphy.gif"; // GIF dyal l-fer7a
+            noBtn.style.display = 'none'; // Ghabber l-bouton dyal No
+            yesBtn.style.transform = 'scale(1.2)';
+        });
+    </script>
+</body>
+</html>
